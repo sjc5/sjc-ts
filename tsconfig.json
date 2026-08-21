@@ -1,0 +1,1 @@
+{ "extends": "./src/unstable/tooling/tsconfig.base.json" }

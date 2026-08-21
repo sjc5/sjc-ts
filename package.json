@@ -1,0 +1,70 @@
+{
+	"name": "sjc-ts",
+	"version": "0.0.1-pre.1",
+	"description": "Miscellaneous TypeScript utilities and tooling.",
+	"private": false,
+	"type": "module",
+	"sideEffects": false,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sjc5/sjc-ts"
+	},
+	"author": "Samuel J. Cook",
+	"scripts": {
+		"prepack": "bun tsdown"
+	},
+	"exports": {
+		"./unstable/tooling/tsconfig.base.json": "./src/unstable/tooling/tsconfig.base.json",
+		"./unstable/tooling": {
+			"types": "./.npm_dist/unstable/tooling/oxlint/index.d.ts",
+			"import": "./.npm_dist/unstable/tooling/oxlint/index.js"
+		},
+		"./unstable/tooling/oxlint": {
+			"types": "./.npm_dist/unstable/tooling/oxlint/config.d.ts",
+			"import": "./.npm_dist/unstable/tooling/oxlint/config.js"
+		},
+		"./unstable/tooling/oxlint/plugin": {
+			"types": "./.npm_dist/unstable/tooling/oxlint/plugin.d.ts",
+			"import": "./.npm_dist/unstable/tooling/oxlint/plugin.js"
+		},
+		"./unstable/tooling/oxfmt": {
+			"types": "./.npm_dist/unstable/tooling/oxfmt/config.d.ts",
+			"import": "./.npm_dist/unstable/tooling/oxfmt/config.js"
+		}
+	},
+	"peerDependencies": {
+		"@oxlint/plugins": "*",
+		"oxfmt": "*",
+		"oxlint": "*",
+		"oxlint-tsgolint": "*"
+	},
+	"peerDependenciesMeta": {
+		"@oxlint/plugins": {
+			"optional": true
+		},
+		"oxfmt": {
+			"optional": true
+		},
+		"oxlint": {
+			"optional": true
+		},
+		"oxlint-tsgolint": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@oxlint/plugins": "^1.79.0",
+		"oxfmt": "^0.64.0",
+		"oxlint": "^1.79.0",
+		"oxlint-tsgolint": "^7.0.2001",
+		"tsdown": "^0.22.14",
+		"typescript": "^7.0.2",
+		"vitest": "^4.1.11"
+	},
+	"files": [
+		".npm_dist/",
+		"src/",
+		"!**/*.test.*"
+	]
+}

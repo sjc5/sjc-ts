@@ -1,0 +1,14 @@
+{
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/.npm_dist": true
+	},
+	"editor.formatOnSave": true,
+	"editor.tabSize": 4,
+	"oxc.fmt.configPath": "oxfmt.config.ts",
+	"[markdown][html][css][typescript][typescriptreact][json][jsonc][toml][yaml]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode",
+		"editor.codeActionsOnSave": { "source.fixAll.oxc": "always" }
+	},
+	"js/ts.preferences.importModuleSpecifierEnding": "js"
+}

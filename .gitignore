@@ -1,0 +1,15 @@
+.DS_Store
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.jsonc
+
+*.local
+*.local.*
+
+.env
+.env.*
+!.env.example
+
+node_modules/
+.npm_dist/
