@@ -32,8 +32,12 @@ fix:
 	bunx oxfmt
 	bunx oxlint --fix
 
+npm-auth:
+	@npm whoami >/dev/null 2>&1 || npm login
+
 publish-step-one:
 	@test -n "$(version)" || (echo "version is required"; exit 2)
+	$(MAKE) npm-auth
 	$(MAKE) check
 	$(MAKE) test
 	bun pm version $(version)
@@ -42,11 +46,11 @@ publish-step-one:
 # make publish-pre version=whatever
 publish-pre:
 	$(MAKE) publish-step-one version=$(version)
-	bun publish --access public --tag pre
+	npm publish --access public --tag pre
 	git push --follow-tags
 
 # make dangerous-publish-non-pre version=whatever
 dangerous-publish-non-pre:
 	$(MAKE) publish-step-one version=$(version)
-	bun publish --access public
+	npm publish --access public
 	git push --follow-tags
