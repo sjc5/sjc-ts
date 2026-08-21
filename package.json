@@ -1,6 +1,6 @@
 {
 	"name": "sjc-ts",
-	"version": "0.0.1-pre.1",
+	"version": "0.0.0",
 	"description": "Miscellaneous TypeScript utilities and tooling.",
 	"private": false,
 	"type": "module",
@@ -17,8 +17,8 @@
 	"exports": {
 		"./unstable/tooling/tsconfig.base.json": "./src/unstable/tooling/tsconfig.base.json",
 		"./unstable/tooling": {
-			"types": "./.npm_dist/unstable/tooling/oxlint/index.d.ts",
-			"import": "./.npm_dist/unstable/tooling/oxlint/index.js"
+			"types": "./.npm_dist/unstable/tooling/index.d.ts",
+			"import": "./.npm_dist/unstable/tooling/index.js"
 		},
 		"./unstable/tooling/oxlint": {
 			"types": "./.npm_dist/unstable/tooling/oxlint/config.d.ts",

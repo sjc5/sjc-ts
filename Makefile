@@ -1,11 +1,18 @@
-dist_dir := ".npm_dist"
+.PHONY: nuke install build test check fix
+
+repo_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+dist_dir := .npm_dist
+
+nuke: export NUKE_DIR := $(dirname)
+nuke:
+	@case "$$NUKE_DIR" in ""|"."|".."|*/*) echo "invalid dirname: $$NUKE_DIR"; exit 2;; esac
+	find "$(repo_dir)" -type d -name "$$NUKE_DIR" -prune -exec rm -rf -- {} +
 
 nuke-node-modules:
-	rm -rf node_modules 2>/dev/null || true
-	find . -path "*/node_modules" -type d -exec rm -rf {} \; 2>/dev/null || true
+	$(MAKE) nuke dirname=node_modules
 
 nuke-npm-dist:
-	rm -rf packages/*/$(dist_dir)
+	$(MAKE) nuke dirname=$(dist_dir)
 
 install:
 	bun i
@@ -24,3 +31,22 @@ check:
 fix:
 	bunx oxfmt
 	bunx oxlint --fix
+
+publish-step-one:
+	@test -n "$(version)" || (echo "version is required"; exit 2)
+	$(MAKE) check
+	$(MAKE) test
+	bun pm version $(version)
+	bun pm pack --dry-run
+
+# make publish-pre version=whatever
+publish-pre:
+	$(MAKE) publish-step-one version=$(version)
+	bun publish --access public --tag pre
+	git push --follow-tags
+
+# make dangerous-publish-non-pre version=whatever
+dangerous-publish-non-pre:
+	$(MAKE) publish-step-one version=$(version)
+	bun publish --access public
+	git push --follow-tags
