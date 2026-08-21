@@ -1,6 +1,6 @@
 {
 	"name": "sjc-ts",
-	"version": "0.0.0",
+	"version": "0.0.1-pre.0",
 	"description": "Miscellaneous TypeScript utilities and tooling.",
 	"private": false,
 	"type": "module",
