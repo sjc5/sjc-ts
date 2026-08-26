@@ -43,13 +43,13 @@ publish-step-one:
 	bun pm version $(version)
 	bun pm pack --dry-run
 
-# make publish-pre version=whatever
+# make publish-pre version=x.x.x-pre.x
 publish-pre:
 	$(MAKE) publish-step-one version=$(version)
 	npm publish --access public --tag pre
 	git push --follow-tags
 
-# make dangerous-publish-non-pre version=whatever
+# make dangerous-publish-non-pre version=x.x.x
 dangerous-publish-non-pre:
 	$(MAKE) publish-step-one version=$(version)
 	npm publish --access public

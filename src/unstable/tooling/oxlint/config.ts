@@ -12,6 +12,7 @@ export const baseOxlintConfig: OxlintConfig = {
 			}),
 		),
 		curly: "error",
+		"typescript/array-type": ["error", { default: "generic" }],
 	},
 	options: {
 		typeAware: true,

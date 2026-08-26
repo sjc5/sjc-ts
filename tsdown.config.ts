@@ -12,5 +12,9 @@ export default defineConfig([
 			"./src/unstable/tooling/oxlint/plugin.ts",
 		],
 		outDir: `${NPM_DIST_DIR}/unstable/tooling`,
+		deps: {
+			...baseTsdownConfig.deps,
+			alwaysBundle: "@oxlint/plugins",
+		},
 	},
 ]);

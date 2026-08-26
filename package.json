@@ -34,15 +34,11 @@
 		}
 	},
 	"peerDependencies": {
-		"@oxlint/plugins": "*",
 		"oxfmt": "*",
 		"oxlint": "*",
 		"oxlint-tsgolint": "*"
 	},
 	"peerDependenciesMeta": {
-		"@oxlint/plugins": {
-			"optional": true
-		},
 		"oxfmt": {
 			"optional": true
 		},
