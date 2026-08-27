@@ -31,7 +31,7 @@ function isStrictPascalCase(name: string): boolean {
 
 function isTypeParameterName(name: string): boolean {
 	return (
-		name === "T" ||
+		isStrictPascalCase(name) ||
 		(name.startsWith("T") && isStrictPascalCase(name.slice(1)))
 	);
 }

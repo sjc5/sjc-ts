@@ -24,6 +24,10 @@ type XmlNode = string;
 enum CssUnit { PixelValue, PX_VALUE }`,
 		},
 		{
+			name: "strict PascalCase type parameters",
+			code: `declare function draftModel<const Options extends DraftModelOptions>(options: Options): Descriptor<"draft-model-decoder", Options>;`,
+		},
+		{
 			name: "owned bindings and members",
 			code: `const { external_name: localName } = source;
 function parseCss(_rawValue: string) {}
