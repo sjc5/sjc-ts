@@ -29,7 +29,6 @@ touch .gitignore \
 !.env.example
 
 node_modules/
-.npm_dist/
 ```
 
 `oxfmt.config.ts`:
@@ -47,7 +46,7 @@ export default defineConfig(baseOxfmtConfig);
 import { defineConfig } from "oxlint";
 import { baseOxlintConfig } from "sjc-ts/unstable/tooling/oxlint";
 
-export default defineConfig(baseOxlintConfig);
+export default defineConfig({ extends: [baseOxlintConfig] });
 ```
 
 `package.json`:
@@ -55,7 +54,9 @@ export default defineConfig(baseOxlintConfig);
 ```json
 {
 	"type": "module",
-	"private": true
+	"private": true,
+	"dependencies": {},
+	"devDependencies": {}
 }
 ```
 
@@ -79,10 +80,7 @@ export default defineConfig(baseOxlintConfig);
 
 ```jsonc
 {
-	"search.exclude": {
-		"**/node_modules": true,
-		"**/.npm_dist": true,
-	},
+	"search.exclude": { "**/node_modules": true },
 	"editor.formatOnSave": true,
 	"editor.tabSize": 4,
 	"oxc.fmt.configPath": "oxfmt.config.ts",
