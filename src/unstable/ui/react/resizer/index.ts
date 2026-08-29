@@ -154,8 +154,8 @@ function toPointerCoordinate(edge: ResizeEdge, event: ReactPointerEvent) {
 	return checkEdgeIsHorizontal(edge) ? event.clientX : event.clientY;
 }
 
-function toResizeCursor(corner: ResizeCorner): ResizeCursor {
-	return corner === "top-left" || corner === "bottom-right"
+function toResizeCursor(first: ResizeEdge, second: ResizeEdge): ResizeCursor {
+	return toResizeDirection(first) === toResizeDirection(second)
 		? "nwse-resize"
 		: "nesw-resize";
 }
@@ -779,7 +779,7 @@ export function ResizeIntersectionHandle({
 	const hoveredTarget = useAtomRef(groupState.hoveredTargetRef);
 	const drag = useRef<IntersectionDragState | null>(null);
 	const source = useRef<object>({}).current;
-	const cursor = toResizeCursor(corner);
+	const cursor = toResizeCursor(first.edge, second.edge);
 	const setCursorStyle = first.setCursorStyle && second.setCursorStyle;
 	const target = useMemo<InteractionTarget>(() => {
 		return {
