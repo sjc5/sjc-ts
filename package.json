@@ -15,6 +15,10 @@
 		"prepack": "bun tsdown"
 	},
 	"exports": {
+		"./unstable/ui/react/resizer": {
+			"types": "./.npm_dist/unstable/ui/react/resizer/index.d.ts",
+			"import": "./.npm_dist/unstable/ui/react/resizer/index.js"
+		},
 		"./unstable/tooling/tsconfig.base.json": "./src/unstable/tooling/tsconfig.base.json",
 		"./unstable/tooling": {
 			"types": "./.npm_dist/unstable/tooling/index.d.ts",
@@ -34,11 +38,21 @@
 		}
 	},
 	"peerDependencies": {
+		"@effect/atom-react": "*",
+		"effect": "*",
 		"oxfmt": "*",
 		"oxlint": "*",
-		"oxlint-tsgolint": "*"
+		"oxlint-tsgolint": "*",
+		"react": "*",
+		"react-dom": "*"
 	},
 	"peerDependenciesMeta": {
+		"@effect/atom-react": {
+			"optional": true
+		},
+		"effect": {
+			"optional": true
+		},
 		"oxfmt": {
 			"optional": true
 		},
@@ -47,13 +61,26 @@
 		},
 		"oxlint-tsgolint": {
 			"optional": true
+		},
+		"react": {
+			"optional": true
+		},
+		"react-dom": {
+			"optional": true
 		}
 	},
 	"devDependencies": {
+		"@effect/atom-react": "^4.0.0-rc.112",
 		"@oxlint/plugins": "^1.79.0",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.5",
+		"effect": "^4.0.0-rc.112",
+		"happy-dom": "^20.11.15",
 		"oxfmt": "^0.64.0",
 		"oxlint": "^1.79.0",
 		"oxlint-tsgolint": "^7.0.2001",
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8",
 		"tsdown": "^0.22.14",
 		"typescript": "^7.0.2",
 		"vitest": "^4.1.11"

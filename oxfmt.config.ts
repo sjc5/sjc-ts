@@ -1,4 +1,4 @@
 import { defineConfig } from "oxfmt";
 import { baseOxfmtConfig } from "sjc-ts/unstable/tooling/oxfmt";
 
-export default defineConfig(baseOxfmtConfig);
+export default defineConfig({ extends: [baseOxfmtConfig] });

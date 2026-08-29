@@ -15,7 +15,7 @@ function withoutLeadingUnderscores(name: string): string {
 	return name.replace(/^_+/, "");
 }
 
-function isConvertibleValueName(name: string): boolean {
+function testConvertibleValueName(name: string): boolean {
 	const bare = withoutLeadingUnderscores(name);
 	return (
 		(/^[a-z][a-zA-Z0-9]*$/.test(bare) && !/[A-Z]{2}/.test(bare)) ||
@@ -25,14 +25,14 @@ function isConvertibleValueName(name: string): boolean {
 	);
 }
 
-function isStrictPascalCase(name: string): boolean {
+function testStrictPascalCase(name: string): boolean {
 	return /^[A-Z][a-zA-Z0-9]*$/.test(name) && !/[A-Z]{2}/.test(name);
 }
 
-function isTypeParameterName(name: string): boolean {
+function testTypeParameterName(name: string): boolean {
 	return (
-		isStrictPascalCase(name) ||
-		(name.startsWith("T") && isStrictPascalCase(name.slice(1)))
+		testStrictPascalCase(name) ||
+		(name.startsWith("T") && testStrictPascalCase(name.slice(1)))
 	);
 }
 
@@ -66,7 +66,7 @@ export const rule = defineRule({
 	},
 	create(context) {
 		function checkValue(node: NamedIdentifier) {
-			if (node.name !== "this" && !isConvertibleValueName(node.name)) {
+			if (node.name !== "this" && !testConvertibleValueName(node.name)) {
 				context.report({
 					node,
 					messageId: VALUE_MESSAGE_ID,
@@ -76,7 +76,7 @@ export const rule = defineRule({
 		}
 
 		function checkType(node: ESTree.BindingIdentifier) {
-			if (!isStrictPascalCase(node.name)) {
+			if (!testStrictPascalCase(node.name)) {
 				context.report({
 					node,
 					messageId: TYPE_MESSAGE_ID,
@@ -86,7 +86,7 @@ export const rule = defineRule({
 		}
 
 		function checkTypeParameter(node: ESTree.BindingIdentifier) {
-			if (!isTypeParameterName(node.name)) {
+			if (!testTypeParameterName(node.name)) {
 				context.report({
 					node,
 					messageId: TYPE_MESSAGE_ID,

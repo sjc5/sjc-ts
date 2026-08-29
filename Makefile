@@ -17,7 +17,7 @@ nuke-npm-dist:
 install:
 	bun i
 
-build:
+build: nuke-npm-dist
 	bun tsdown
 
 test: build
