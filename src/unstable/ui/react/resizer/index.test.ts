@@ -156,25 +156,25 @@ describe("resizer", () => {
 			corner: "top-left",
 			horizontalEdge: "right",
 			verticalEdge: "top",
-			expectedCursor: "nesw-resize",
+			expectedCursor: "move",
 		},
 		{
 			corner: "top-right",
 			horizontalEdge: "left",
 			verticalEdge: "top",
-			expectedCursor: "nwse-resize",
+			expectedCursor: "move",
 		},
 		{
 			corner: "bottom-left",
 			horizontalEdge: "right",
 			verticalEdge: "bottom",
-			expectedCursor: "nwse-resize",
+			expectedCursor: "move",
 		},
 		{
 			corner: "bottom-right",
 			horizontalEdge: "left",
 			verticalEdge: "bottom",
-			expectedCursor: "nesw-resize",
+			expectedCursor: "move",
 		},
 	])("uses the expected cursor and styles for $corner", (testCase) => {
 		const { container, intersection } = renderIntersection(testCase);
@@ -254,7 +254,7 @@ describe("resizer", () => {
 			corner: "top-left",
 			horizontalEdge: "right",
 			verticalEdge: "top",
-			expectedCursor: "nesw-resize",
+			expectedCursor: "move",
 		});
 
 		dispatchPointerEvent({

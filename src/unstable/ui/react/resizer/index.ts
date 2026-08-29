@@ -18,7 +18,7 @@ export type ResizeCorner =
 	| "bottom-left"
 	| "bottom-right";
 
-type ResizeCursor = "ew-resize" | "ns-resize" | "nesw-resize" | "nwse-resize";
+type ResizeCursor = "ew-resize" | "move" | "ns-resize";
 
 type ResizeAppearance = {
 	handleSize: number;
@@ -152,12 +152,6 @@ function toResizeDirection(edge: ResizeEdge) {
 
 function toPointerCoordinate(edge: ResizeEdge, event: ReactPointerEvent) {
 	return checkEdgeIsHorizontal(edge) ? event.clientX : event.clientY;
-}
-
-function toResizeCursor(first: ResizeEdge, second: ResizeEdge): ResizeCursor {
-	return toResizeDirection(first) === toResizeDirection(second)
-		? "nwse-resize"
-		: "nesw-resize";
 }
 
 function validateAppearance(appearance: {
@@ -779,7 +773,7 @@ export function ResizeIntersectionHandle({
 	const hoveredTarget = useAtomRef(groupState.hoveredTargetRef);
 	const drag = useRef<IntersectionDragState | null>(null);
 	const source = useRef<object>({}).current;
-	const cursor = toResizeCursor(first.edge, second.edge);
+	const cursor = "move";
 	const setCursorStyle = first.setCursorStyle && second.setCursorStyle;
 	const target = useMemo<InteractionTarget>(() => {
 		return {
